@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DoAnWeb.Models.sach>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 style="clear:both" > TRANG CHỦ </h1>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-1g-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    @item.ten_sach
+                </div>
+                <div class="panel-body">
+                    <p><strong>Giá: </strong>@item.tac_gia.ten_tac_gia</p>
+                    <p><strong>Ngày cập nhật: </strong>@item.updated_at</p>
+                    <p><strong>Số chương </strong>@item.so_chuong</p>
+                    <p><img src="@item.hinh" width="80%" height="80%" alt="hinh thumnail"></p>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">@*<a href="#" class="btn btn-primary"> Đọc </a>*@
+                        @Html.ActionLink("Đọc", "Detail", new { id = item.id }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

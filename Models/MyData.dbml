@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Do_an_Web_doc_truyen" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-OECLQRL\LOCAL;Initial Catalog=Do_an_Web_doc_truyen;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Do_an_Web_doc_truyenConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.chuong" Member="chuongs">
+    <Type Name="chuong">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten_chuong" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bi_danh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="noi_dung" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="id_sach" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="sach_chuong" Member="sach" ThisKey="id_sach" OtherKey="id" Type="sach" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sach" Member="saches">
+    <Type Name="sach">
+      <Column Name="id" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ten_sach" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bi_danh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="mo_ta" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="trang_thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="so_chuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hinh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="id_the_loai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_tac_gia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="sach_chuong" Member="chuongs" ThisKey="id" OtherKey="id_sach" Type="chuong" />
+      <Association Name="tac_gia_sach" Member="tac_gia" ThisKey="id_tac_gia" OtherKey="id" Type="tac_gia" IsForeignKey="true" />
+      <Association Name="the_loai_sach" Member="the_loai" ThisKey="id_the_loai" OtherKey="id" Type="the_loai" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tac_gia" Member="tac_gias">
+    <Type Name="tac_gia">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten_tac_gia" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bi_danh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tac_gia_sach" Member="saches" ThisKey="id" OtherKey="id_tac_gia" Type="sach" />
+    </Type>
+  </Table>
+  <Table Name="dbo.the_loai" Member="the_loais">
+    <Type Name="the_loai">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten_the_loai" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bi_danh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="the_loai_sach" Member="saches" ThisKey="id" OtherKey="id_the_loai" Type="sach" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten_user" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="token" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="type_acc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updated_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DoAnWeb.Models.sach>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="clear:both"> DANH SÁCH TRUYỆN </h2>
+<table class="table">
+    <tr>
+        <th>Tên</th>
+        <th>Tên Tác giả</th>
+        <th>Số chương</th>
+        <th>Hình</th>
+        <th>Trạng thái</th>
+        <th>Mô Tả </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelIteam => item.ten_sach)</td>
+            <td>@Html.DisplayFor(modelIteam => item.tac_gia.ten_tac_gia)</td>
+            <td>@Html.DisplayFor(modelIteam => item.so_chuong)</td>
+            <td><img src="@item.hinh" width="50%" height="50%" /></td>
+            <td>@Html.DisplayFor(modelIteam => item.trang_thai)</td>
+            <td>@Html.DisplayFor(modelIteam => item.mo_ta)</td>
+        </tr>
+    }
+
+</table>
+
